@@ -1,0 +1,35 @@
+Filter：
+	1.作用：过滤任意的请求和响应
+	
+	2.使用：
+		1.编写一个过滤器类：
+			实现Filter接口，必须重写doFilter方法，可选重写init、destroy方法
+		2.在web.xml中配置过滤器（推荐）：
+				<filter>
+					<filter-name>LifeFilter</filter-name>
+					<filter-class>org.jgs1904.filter.LifeFilter</filter-class>
+				</filter>
+				<filter-mapping>
+					<filter-name>LifeFilter</filter-name>
+					<url-pattern>/*</url-pattern>
+				</filter-mapping>
+				注意：多个过滤器根据配置顺序依次执行
+		3.web3.0之后也可使用注解配置：
+				@WebFilter("/*")
+				注意：按照类的顺序（名称的字典顺序）依次执行
+		
+	3.生命周期：
+		1.init：时机：项目启动加载到过滤器配置时；次数：一次
+		2.doFilter：时机：每次请求和响应；次数：每次请求和响应方法完整执行一次
+		3.destroy：时机：服务器正常关闭时；次数：一次
+		
+	4.实践：
+		1.统一解决请求和响应乱码
+		2.登录校验：
+			用户请求时判断是否已经登录，如果没有登录，重定向到登陆页面；如果登陆了，就放行请求。
+		
+		
+		
+		
+			
+	
